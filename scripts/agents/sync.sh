@@ -7,7 +7,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 UP="$ROOT/upstream/claude-sub-agent"
 
-if [ ! -d "$UP/.git" ]; then
+if [ ! -e "$UP/.git" ]; then
   echo "Upstream submodule not found. Run scripts/setup.sh first."
   exit 1
 fi

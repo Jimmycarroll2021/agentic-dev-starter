@@ -1,0 +1,3 @@
+[submodule "upstream/claude-sub-agent"]
+	path = upstream/claude-sub-agent
+	url = https://github.com/zhsama/claude-sub-agent.git
