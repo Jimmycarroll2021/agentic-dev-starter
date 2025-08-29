@@ -1,0 +1,13 @@
+name: Tech Debt
+description: Technical improvement
+title: "[Tech Debt] <title>"
+labels: ["phase:development"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal

@@ -1,0 +1,34 @@
+workspace:
+  name: "Agentic Dev Starter"
+pipelines:
+  - "Intake"
+  - "Icebox"
+  - "Backlog"
+  - "Ready for Planning"
+  - "In Planning"
+  - "Ready for Dev"
+  - "In Dev"
+  - "Review/QA"
+  - "Ready for Validation"
+  - "Validated/Done"
+  - "Closed"
+labels:
+  - "type:feature"
+  - "type:bug"
+  - "phase:planning"
+  - "phase:development"
+  - "phase:validation"
+  - "quality-gate:passed"
+  - "quality-gate:failed"
+estimates:
+  field: "Story Points"
+  scale: [1,2,3,5,8,13]
+epics:
+  - title: "MVP: Task Management Web App"
+    description: "End-to-end flow driven by sub-agents; includes auth, tasks, tests."
+    start: 2025-09-01
+    end: 2025-09-30
+    children:
+      - "Implement auth module"
+      - "Task CRUD with filters"
+      - "End-to-end test coverage ≥ 80%"

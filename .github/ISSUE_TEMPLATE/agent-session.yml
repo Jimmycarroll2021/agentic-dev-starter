@@ -1,0 +1,26 @@
+name: Agent Session
+description: Capture an agent run and its artefacts
+title: "[Agent] <feature or task>"
+labels: ["phase:planning"]
+body:
+  - type: input
+    id: agent
+    attributes:
+      label: Agent or command used
+      placeholder: "/agent-workflow"
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Outputs / Artefacts
+      placeholder: "requirements.md, architecture.md, tasks.md, test-plan.md"
+  - type: dropdown
+    id: gate
+    attributes:
+      label: Quality Gate
+      options:
+        - Passed
+        - Failed

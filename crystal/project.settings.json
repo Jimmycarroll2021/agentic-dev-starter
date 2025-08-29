@@ -1,0 +1,9 @@
+{
+  "runScripts": {
+    "webapp:devTest": "npm --prefix examples/webapp run test"
+  },
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_REGION": "eu-west-2"
+  }
+}

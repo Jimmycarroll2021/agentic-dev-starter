@@ -1,0 +1,16 @@
+{
+  "name": "agentic-dev-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "agents:sync": "bash scripts/agents/sync.sh",
+    "zenhub:apply": "node scripts/zenhub/apply-blueprint.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  }
+}

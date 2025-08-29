@@ -1,0 +1,23 @@
+name: Story
+description: User story
+title: "[Story] <title>"
+labels: ["type:feature"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: "As a <role> I want <goal> so that <reason>"
+      placeholder: "As a user I want..."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: "- [ ] Given ... When ... Then ..."
+  - type: input
+    id: points
+    attributes:
+      label: Story Points
+      description: "Choose from 1,2,3,5,8,13"

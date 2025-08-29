@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+
+# Agent files (synced locally, not committed by default)
+.claude/agents/
+.claude/commands/
+
+# Example build artefacts
+examples/*/dist/
+examples/*/build/
