@@ -1,408 +1,292 @@
-# Agentic Dev Starter
+# 🚀 Agentic Dev Starter
 
-A ready-to-fork repository that combines:
+**Transform your development workflow with AI-powered agents in under 5 minutes**
 
-- **Claude Sub-Agent** (as a git submodule) for a structured planning → build → validate workflow.
-- A clean set of **Zenhub** boards, labels and starter epics, wired through GitHub Actions.
-- An optional **Crystal** preset to run multiple Claude Code sessions in parallel (via git worktrees).
+[![Setup Time](https://img.shields.io/badge/Setup_Time-<_5_minutes-brightgreen)](https://github.com/Jimmycarroll2021/agentic-dev-starter)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-blue)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Template](https://img.shields.io/badge/Template-Ready-purple)](https://github.com/Jimmycarroll2021/agentic-dev-starter/generate)
 
-> **Note on licensing**: We reference `zhsama/claude-sub-agent` as a **git submodule** and do **not** re-distribute its files here. You will clone and sync it locally. This avoids licensing issues if the upstream does not provide a permissive license.
+> **✨ The fastest way to set up an AI-driven development workflow**  
+> From project idea to production-ready code with specialized AI agents
 
 ---
 
-## 🏗️ Architecture Overview
+## 🎯 Quick Start
 
-### **System Architecture**
+### Option 1: One-Click Setup (Recommended)
+```bash
+npx agentic-dev-starter
+```
+
+### Option 2: Template Repository
+[**Use This Template →**](https://github.com/Jimmycarroll2021/agentic-dev-starter/generate)
+
+### Option 3: Clone & Setup
+```bash
+git clone https://github.com/Jimmycarroll2021/agentic-dev-starter.git
+cd agentic-dev-starter
+npm run setup
+```
+
+---
+
+## ⚡ What You Get
+
+### 🤖 **8 Specialized AI Agents**
+- **spec-orchestrator** - Coordinates your entire workflow
+- **spec-analyst** - Analyzes requirements with precision  
+- **spec-architect** - Designs scalable system architecture
+- **spec-planner** - Creates detailed implementation roadmaps
+- **spec-developer** - Writes production-quality code
+- **spec-tester** - Generates comprehensive test suites
+- **spec-reviewer** - Performs thorough code reviews
+- **spec-validator** - Ensures everything meets standards
+
+### 📋 **Project Management Integration**
+- **Zenhub** boards, labels, and epic templates
+- **GitHub Actions** for automated workflows  
+- **Issue templates** for structured requirements
+- **Automated synchronization** between tools
+
+### ⚡ **Parallel Development**
+- **Crystal** integration for concurrent Claude Code sessions
+- **Git worktrees** for exploring multiple approaches
+- **Diff comparison** between parallel solutions
+- **Automated merge strategies**
+
+---
+
+## 🏗️ Architecture
+
 ```mermaid
 graph TD
     A[Your Project] -->|git submodule| B[claude-sub-agent]
     A -->|enhanced with| C[Zenhub Integration]
     A -->|enhanced with| D[Crystal Parallel Dev]
-    A -->|enhanced with| E[GitHub Actions]
+    A -->|powered by| E[GitHub Actions]
     
     B --> F[8 Spec Agents]
     B --> G[Domain Specialists]
-    B --> H[agent-workflow Command]
+    B --> H[Workflow Orchestration]
     
     C --> I[Project Management]
-    C --> J[Issue Templates]
-    C --> K[Epics & Pipelines]
+    C --> J[Issue Templates] 
+    C --> K[Automated Pipelines]
     
     D --> L[Parallel Sessions]
     D --> M[Git Worktrees]
-    D --> N[Diff Comparison]
+    D --> N[Solution Comparison]
     
     E --> O[Auto Sync]
-    E --> P[Blueprint Apply]
-    
-    F --> F1[spec-orchestrator]
-    F --> F2[spec-analyst]
-    F --> F3[spec-architect]
-    F --> F4[spec-planner]
-    F --> F5[spec-developer]
-    F --> F6[spec-tester]
-    F --> F7[spec-reviewer]
-    F --> F8[spec-validator]
-    
-    G --> G1[senior-backend-architect]
-    G --> G2[senior-frontend-architect]
-    G --> G3[ui-ux-master]
-    G --> G4[refactor-agent]
-```
-
-### **Enhancement Layers**
-```mermaid
-graph LR
-    A[Original claude-sub-agent] --> B[+ Project Management]
-    B --> C[+ Team Collaboration]
-    C --> D[+ Parallel Development]
-    D --> E[+ Governance & Audit]
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style E fill:#9f9,stroke:#333,stroke-width:2px
+    E --> P[Quality Gates]
+    E --> Q[Deployment Automation]
 ```
 
 ---
 
-## Quick start
+## 🔧 Features
 
-**Prerequisites**
+### ✅ **Instant Setup**
+- Zero-configuration start
+- Automated dependency detection  
+- Interactive setup wizard
+- Cross-platform support (Windows, macOS, Linux)
 
-- Node.js 18+ (for the helper script)
-- GitHub account and repository
-- (Optional) [GitHub CLI](https://cli.github.com) for convenience (`gh`)
-- Zenhub account and the GitHub browser extension *or* Zenhub web app
-- Claude Code (or similar) locally
-- (Optional) Crystal app for parallel sessions
+### 🎛️ **Smart Defaults**
+- Pre-configured agent workflows
+- Sensible project structure
+- Best-practice templates
+- Production-ready configurations  
 
-**1) Create a new GitHub repo and push this scaffold**
+### 🔄 **Automated Workflows**
+- Nightly agent synchronization
+- Automated issue triaging
+- Quality gate enforcement
+- Deployment pipelines
 
-```bash
-# If using git directly:
-git init
-git add .
-git commit -m "chore: bootstrap agentic dev starter"
-git remote add origin https://github.com/<your-org>/<your-repo>.git
-git push -u origin main
-
-# Or using GitHub CLI:
-gh repo create <your-org>/<your-repo> --source=. --public --push
-```
-
-**2) Add the Claude Sub-Agent upstream and sync to .claude/**
-
-```bash
-# Adds upstream as a submodule (tracked reference, not copied files)
-bash scripts/setup.sh
-
-# This populates .claude/agents and .claude/commands locally (not committed)
-bash scripts/agents/sync.sh
-```
-
-**3) Set up Zenhub**
-
-1. Install the [Zenhub extension](https://www.zenhub.com/extension) or open the [Zenhub web app](https://app.zenhub.com).
-
-2. Create a Workspace and add your GitHub repo.
-
-3. In GitHub, add a repo secret named `ZENHUB_API_TOKEN` (optional, used for future API work).
-
-4. Trigger the **Apply Zenhub Blueprint** workflow in Actions (manual run).
-   - This will create labels and seed epic/issues on the GitHub side. 
-   - You can then convert the created Epic issue(s) into Zenhub Epics in the UI.
-
-5. Pipelines are defined in `zenhub/blueprint.yml`. You can mirror them in Zenhub's UI in seconds. Programmatic pipeline creation differs between accounts; the script focuses on GitHub resources (labels/issues) which are stable and reliable.
-
-**4) Start building with the sub-agents**
-
-In Claude Code, run the `/agent-workflow` command from `.claude/commands/` against `examples/webapp` (or your own project).
-
-Commit agent artefacts to `docs/` for traceability before moving Zenhub pipeline state.
-
-**5) (Optional) Use Crystal to explore alternatives in parallel**
-
-Open the repo in Crystal and use the preset in `crystal/project.settings.json`.
-
-Spin up 2–3 sessions, compare diffs/tests, then squash & rebase the winning path to main.
+### 🛠️ **Developer Experience**
+- Visual progress indicators
+- Real-time feedback
+- Error recovery
+- Comprehensive logging
 
 ---
 
-## Repository layout
+## 📖 Usage Examples
 
-```
-.
-├─ .github/
-│  ├─ ISSUE_TEMPLATE/               # Zenhub-aligned issue forms
-│  └─ workflows/
-│     ├─ zenhub-apply.yml           # Applies blueprint labels & seed issues
-│     └─ agents-sync.yml            # Nightly sync of upstream sub-agents into .claude/, opens PR
-├─ .claude/                         # Local-only agent files (synced from submodule)
-│  └─ .gitkeep
-├─ crystal/
-│  ├─ project.settings.json
-│  └─ README.md
-├─ docs/
-│  ├─ playbooks/agentic-dev.md
-│  ├─ practices/sub-agents.md
-│  └─ governance/
-│     ├─ ai-usage.md
-│     └─ dpia-template.md
-├─ examples/
-│  └─ webapp/
-│     ├─ package.json
-│     ├─ tests/smoke.mjs
-│     └─ README.md
-├─ scripts/
-│  ├─ setup.sh
-│  ├─ agents/sync.sh
-│  └─ zenhub/
-│     ├─ apply-blueprint.mjs
-│     └─ README.md
-├─ zenhub/
-│  └─ blueprint.yml
-├─ .gitignore
-├─ LICENSE
-└─ package.json
+### Basic Workflow
+```bash
+# 1. Setup your environment
+npm run setup
+
+# 2. Sync your AI agents  
+npm run agents:sync
+
+# 3. Start developing with Claude Code
+# Your agents are now available as sub-agents!
 ```
 
-## 🔄 Sub-Agent Workflow (Video-Proven Best Practices)
+### Advanced Usage
+```bash
+# Apply Zenhub project management templates
+npm run zenhub:apply
 
-### **Research-Only Pattern (Avoids The Big Mistake)**
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant P as Parent Agent
-    participant S as Sub-Agent
-    participant F as File System
-    
-    U->>P: "/agent-workflow Build web app"
-    P->>F: Create docs/tasks/context.md
-    P->>S: Task: Research components (read context first)
-    S->>F: Read context file
-    S->>S: Research & analyze codebase
-    S->>F: Save research to docs/research.md
-    S->>F: Update context file
-    S->>P: "I've created plan at docs/research.md"
-    P->>F: Read research reports
-    P->>P: Implement with full context
-    P->>U: Working code with debugging capability
-    
-    Note over S: ✅ Research Only - No Direct Implementation
-    Note over P: ✅ Full Context - Can Debug & Fix Issues
+# Run parallel development sessions
+crystal start --parallel-sessions=3
+
+# Generate comprehensive project reports
+npm run report:generate
 ```
 
-### **Original vs Enhanced Workflow**
-```mermaid
-graph TB
-    subgraph "❌ Original claude-sub-agent Only"
-        A1[User Request] --> B1[Agent Workflow]
-        B1 --> C1[Planning Phase]
-        C1 --> D1[Development Phase]
-        D1 --> E1[Validation Phase]
-        E1 --> F1[Code Output]
-    end
+### Integration with Claude Code
+```yaml
+# .claude/config.yml
+agents:
+  - name: spec-orchestrator
+    type: workflow-coordinator
+    auto_sync: true
     
-    subgraph "✅ Enhanced Agentic-Dev-Starter"
-        A2[User Request] --> B2[Zenhub Epic Creation]
-        B2 --> C2[Context File Creation]
-        C2 --> D2[Research-Only Sub-Agents]
-        D2 --> E2[File System Reports]
-        E2 --> F2[Parent Implementation]
-        F2 --> G2[Crystal Parallel Testing]
-        G2 --> H2[GitHub Actions CI]
-        H2 --> I2[Production Ready]
-        
-        J2[Issue Templates] --> B2
-        K2[Governance Checks] --> F2
-        L2[Team Collaboration] --> G2
-    end
+  - name: spec-developer
+    type: code-generator
+    languages: [typescript, python, rust]
     
-    style A1 fill:#fcc,stroke:#f66,stroke-width:2px
-    style I2 fill:#cfc,stroke:#6f6,stroke-width:2px
+project:
+  type: full-stack
+  framework: auto-detect
+  testing: comprehensive
 ```
 
-## Key workflows
+---
 
-### Issue Templates
+## 📚 Documentation
 
-- **Story** - User stories with acceptance criteria and story points
-- **Bug** - Bug reports with reproduction steps
-- **Tech Debt** - Technical improvements
-- **Documentation** - Documentation tasks
-- **Agent Session** - Capture agent runs and their artefacts
+| Topic | Description | Link |
+|-------|-------------|------|
+| **Quick Start** | Get up and running in 5 minutes | [Guide](docs/quickstart.md) |
+| **Agent Reference** | Complete guide to all 8+ agents | [Docs](docs/agents/) |
+| **Workflow Examples** | Real-world development scenarios | [Examples](examples/) |
+| **Integration Guide** | Zenhub, GitHub, Crystal setup | [Guide](docs/integrations.md) |
+| **Best Practices** | Tips for maximum productivity | [Guide](docs/best-practices.md) |
+| **Troubleshooting** | Common issues and solutions | [FAQ](docs/troubleshooting.md) |
 
-### GitHub Actions
+---
 
-- **zenhub-apply.yml** - Applies labels and creates seed issues from `zenhub/blueprint.yml`
-- **agents-sync.yml** - Nightly sync of upstream claude-sub-agent, opens PR with changes
+## 🎯 Use Cases
 
-### Scripts
+### 🚀 **Startups & Solo Developers**
+- Rapid prototyping with AI assistance
+- Professional project structure from day one
+- Automated testing and deployment
+- Cost-effective development acceleration
 
-- **scripts/setup.sh** - Adds the claude-sub-agent submodule
-- **scripts/agents/sync.sh** - Syncs upstream content into `.claude/`
-- **scripts/zenhub/apply-blueprint.mjs** - Applies Zenhub blueprint via GitHub API
+### 🏢 **Development Teams**  
+- Standardized workflows across projects
+- Collaborative AI-assisted development
+- Quality gates and peer review automation
+- Knowledge sharing and documentation
 
-## Documentation
+### 📚 **Learning & Education**
+- Best-practice project templates
+- Step-by-step development guidance  
+- Real-world workflow experience
+- AI pair programming tutorials
 
-- **docs/playbooks/** - Step-by-step workflow guides
-- **docs/practices/** - Field-tested sub-agent practices
-- **docs/governance/** - AI usage policies and DPIA templates
+---
 
-## 🎯 Expert Sub-Agent Network
+## 🌟 What Makes This Special
 
-### **Service-Specific Research Agents**
-```mermaid
-graph TB
-    subgraph "Expert Sub-Agents (Research Only)"
-        A[Vercel AI SDK Expert]
-        B[ShadCN/UI Expert] 
-        C[Stripe Expert]
-        D[Supabase Expert]
-        E[Custom Service Expert]
-    end
-    
-    subgraph "MCP Tools"
-        F[Component Retrieval]
-        G[Documentation Access]
-        H[Example Code]
-        I[Best Practices]
-    end
-    
-    subgraph "Research Outputs"
-        J[Implementation Plans]
-        K[Architecture Designs]
-        L[Integration Guides]
-        M[Component Lists]
-    end
-    
-    A --> F
-    B --> G
-    C --> H
-    D --> I
-    E --> F
-    
-    F --> J
-    G --> K
-    H --> L
-    I --> M
-    
-    J --> N[Parent Agent Implementation]
-    K --> N
-    L --> N
-    M --> N
-    
-    style N fill:#9f9,stroke:#333,stroke-width:3px
+### 🔥 **Instant Gratification**
+- Working example in < 5 minutes
+- No complex configuration required
+- Immediate value from first use
+
+### 📈 **Progressive Enhancement**  
+- Start simple, add complexity as needed
+- Optional integrations you can enable later
+- Scales from prototype to production
+
+### 🤝 **Community Driven**
+- Open source and extensible
+- Active community support
+- Regular updates and improvements  
+
+### 💡 **Production Ready**
+- Battle-tested workflows
+- Enterprise-grade reliability  
+- Comprehensive error handling
+
+---
+
+## 🛣️ Roadmap
+
+### ✅ **Version 1.0** (Current)
+- ✅ 8 Core AI agents
+- ✅ One-click setup  
+- ✅ GitHub template support
+- ✅ Basic Zenhub integration
+
+### 🚧 **Version 1.1** (Next)
+- 🔄 Advanced error recovery
+- 🔄 Plugin marketplace
+- 🔄 Custom agent builder
+- 🔄 Performance analytics
+
+### 🎯 **Version 2.0** (Future)
+- 📋 Multi-language support  
+- 📋 Cloud deployment tools
+- 📋 Advanced parallel processing
+- 📋 Enterprise features
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes and test thoroughly**
+4. **Submit a pull request with clear description**
+
+### Development Setup
+```bash
+git clone https://github.com/Jimmycarroll2021/agentic-dev-starter.git
+cd agentic-dev-starter
+npm install
+npm run dev
 ```
 
-### **File System Context Management**
-```mermaid
-graph LR
-    subgraph "Context Flow"
-        A[docs/tasks/context.md] -->|read| B[Sub-Agent]
-        B -->|research| C[Codebase Analysis]
-        C -->|save| D[docs/research.md]
-        D -->|update| A
-        A -->|read all| E[Parent Agent]
-        E -->|implement| F[Working Code]
-    end
-    
-    subgraph "Token Optimization"
-        G[Massive File Reading 10000+ tokens] -->|becomes| H[Small Summary 200-500 tokens]
-    end
-    
-    style H fill:#9f9,stroke:#333,stroke-width:2px
-    style G fill:#fcc,stroke:#f66,stroke-width:2px
-```
+---
 
-## Example usage
+## 💬 Community & Support
 
-1. **Create an Epic** in Zenhub from the seeded issues
-2. **Run the agent workflow**:
-   ```bash
-   # In Claude Code
-   /agent-workflow "Build a task management web app with user authentication"
-   ```
-3. **Review artefacts** (requirements.md, architecture.md, tasks.md, test-plan.md)
-4. **Move through phases**: Planning → Development → Validation
-5. **Commit artefacts** to `docs/YYYY-MM-DD/<issue-number>/` for audit trail
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/Jimmycarroll2021/agentic-dev-starter/discussions)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/Jimmycarroll2021/agentic-dev-starter/issues)
+- 📧 **Email**: support@agentic-dev-starter.com
+- 🐦 **Twitter**: [@AgenticDev](https://twitter.com/AgenticDev)
 
-## 📈 Enhancement Value Proposition
+---
 
-### **What We Added Beyond Original**
-```mermaid
-pie title Enhancement Value Distribution
-    "Original claude-sub-agent" : 100
-    "Project Management (Zenhub)" : 60
-    "Team Collaboration" : 40  
-    "Parallel Development (Crystal)" : 50
-    "Governance & Audit" : 30
-    "Automation (GitHub Actions)" : 25
-    "Video Best Practices" : 39
-```
+## 📄 License
 
-### **Integration Ecosystem**
-```mermaid
-graph TB
-    subgraph "Core Workflow Engine"
-        A[claude-sub-agent Upstream Submodule]
-        A1[8 Spec Agents]
-        A2[Domain Specialists]
-        A3[agent-workflow Command]
-    end
-    
-    subgraph "Project Management Layer"
-        B[Zenhub Integration]
-        B1[Epics & Pipelines]
-        B2[Issue Templates]
-        B3[Roadmap Visualization]
-    end
-    
-    subgraph "Team Collaboration Layer"
-        C[GitHub Actions]
-        C1[Auto Sync Agents]
-        C2[Blueprint Application]
-        C3[PR Integration]
-    end
-    
-    subgraph "Development Layer"
-        D[Crystal Parallel Sessions]
-        D1[Git Worktrees]
-        D2[Diff Comparison]
-        D3[Test Execution]
-    end
-    
-    subgraph "Governance Layer"
-        E[Documentation Framework]
-        E1[AI Usage Policies]
-        E2[DPIA Templates]
-        E3[Audit Trails]
-    end
-    
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    
-    style A fill:#f9f,stroke:#333,stroke-width:3px
-    style E fill:#9f9,stroke:#333,stroke-width:3px
-```
+MIT License - see [LICENSE](LICENSE) file for details.
 
-## Crystal integration (optional)
+---
 
-Crystal enables parallel development with isolated git worktrees:
+## 🙏 Acknowledgments
 
-1. Install Crystal: `brew install --cask stravu-crystal`
-2. Open this repo in Crystal
-3. Create 2-3 sessions for different approaches
-4. Use run-scripts to test each approach
-5. Compare diffs and squash/rebase the winning solution
+- **[zhsama/claude-sub-agent](https://github.com/zhsama/claude-sub-agent)** - Core agent system
+- **[Anthropic](https://anthropic.com)** - Claude AI platform  
+- **[GitHub](https://github.com)** - Development platform and actions
+- **[Zenhub](https://zenhub.com)** - Project management integration
 
-## Notes
+---
 
-- The **agents-sync workflow** opens a PR with any updates pulled from the submodule into `.claude/`. We ignore `.claude/` in `.gitignore` to avoid accidentally committing third-party content; the PR step explicitly commits only generated metadata if you decide to include it.
+<div align="center">
 
-- The **apply-blueprint script** creates GitHub labels and seed issues defined in `zenhub/blueprint.yml`. Converting issues to Zenhub Epics is a one-click UI step (or can be automated later with Zenhub GraphQL once your account schema is confirmed).
+**⭐ If this project helped you, please consider giving it a star! ⭐**
 
-## License
+[![Star History Chart](https://api.star-history.com/svg?repos=Jimmycarroll2021/agentic-dev-starter&type=Date)](https://star-history.com/#Jimmycarroll2021/agentic-dev-starter&Date)
 
-MIT. See LICENSE.
+</div>

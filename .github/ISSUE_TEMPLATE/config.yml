@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Community Discussions
+    url: https://github.com/Jimmycarroll2021/agentic-dev-starter/discussions
+    about: Ask questions, share ideas, and get help from the community
+  - name: 📚 Documentation
+    url: https://github.com/Jimmycarroll2021/agentic-dev-starter#-documentation
+    about: Check our comprehensive documentation first
+  - name: 🚀 Quick Setup Guide
+    url: https://github.com/Jimmycarroll2021/agentic-dev-starter#-quick-start
+    about: Follow our 5-minute setup guide

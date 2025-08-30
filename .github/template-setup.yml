@@ -1,0 +1,95 @@
+name: Template Repository Setup
+description: Automatically configure new repositories created from this template
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  setup-template:
+    if: github.repository != 'Jimmycarroll2021/agentic-dev-starter'
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        submodules: recursive
+        
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Customize for new repository
+      run: |
+        # Update package.json with new repository info
+        NEW_REPO_NAME=$(basename ${{ github.repository }})
+        sed -i "s/agentic-dev-starter/$NEW_REPO_NAME/g" package.json
+        
+        # Update repository URL in package.json
+        sed -i "s|https://github.com/Jimmycarroll2021/agentic-dev-starter.git|${{ github.server_url }}/${{ github.repository }}.git|g" package.json
+        
+        # Initialize git submodules
+        git submodule update --init --recursive
+        
+        # Install dependencies
+        npm install
+        
+    - name: Create welcome issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          await github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: '🚀 Welcome to your Agentic Dev Environment!',
+            body: `# Welcome to your new agentic development workspace! 🎉
+
+This repository has been automatically configured with:
+- ✅ Claude Sub-Agent workflow system  
+- ✅ GitHub Actions automation
+- ✅ Example workflows and templates
+- ✅ Best-practice project structure
+
+## 🏃‍♂️ Quick Start (< 5 minutes):
+
+1. **Run the setup wizard:**
+   \`\`\`bash
+   npm run setup
+   \`\`\`
+
+2. **Or use the one-liner:**
+   \`\`\`bash
+   curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/main/install.sh | bash
+   \`\`\`
+
+## 📚 What's Next?
+
+- [ ] Complete the setup wizard above
+- [ ] Explore \`examples/quickstart/\` for your first workflow
+- [ ] Read the full documentation in README.md
+- [ ] Join our community discussions for support
+
+## 🛠 Available Commands:
+
+- \`npm run setup\` - Interactive setup wizard
+- \`npm run agents:sync\` - Synchronize AI agents
+- \`npm run dev\` - Start development workflow
+
+Happy coding! 🚀
+
+---
+*This issue was automatically created when you used this template. You can close it after completing setup.*`
+          });
+          
+    - name: Commit template customizations
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add -A
+        if ! git diff --cached --quiet; then
+          git commit -m "🚀 Initialize from agentic-dev-starter template"
+          git push
+        fi

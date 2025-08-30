@@ -1,16 +1,34 @@
 {
   "name": "agentic-dev-starter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=18"
   },
+  "bin": {
+    "agentic-setup": "./bin/setup.js"
+  },
   "scripts": {
+    "setup": "node bin/setup.js",
     "agents:sync": "bash scripts/agents/sync.sh",
-    "zenhub:apply": "node scripts/zenhub/apply-blueprint.mjs"
+    "zenhub:apply": "node scripts/zenhub/apply-blueprint.mjs",
+    "dev": "npm run agents:sync",
+    "postinstall": "echo '\n🚀 Run: npm run setup to get started!\n'"
   },
   "dependencies": {
     "yaml": "^2.5.0"
+  },
+  "keywords": [
+    "ai",
+    "claude",
+    "agents",
+    "development",
+    "automation",
+    "workflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jimmycarroll2021/agentic-dev-starter.git"
   }
 }
