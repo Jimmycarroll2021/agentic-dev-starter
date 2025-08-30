@@ -22,7 +22,7 @@ graph TD
     
     B --> F[8 Spec Agents]
     B --> G[Domain Specialists]
-    B --> H[/agent-workflow Command]
+    B --> H[agent-workflow Command]
     
     C --> I[Project Management]
     C --> J[Issue Templates]
@@ -307,7 +307,7 @@ graph LR
     end
     
     subgraph "Token Optimization"
-        G[Massive File Reading<br/>10,000+ tokens] -->|becomes| H[Small Summary<br/>200-500 tokens]
+        G[Massive File Reading 10000+ tokens] -->|becomes| H[Small Summary 200-500 tokens]
     end
     
     style H fill:#9f9,stroke:#333,stroke-width:2px
@@ -343,35 +343,35 @@ pie title Enhancement Value Distribution
 ### **Integration Ecosystem**
 ```mermaid
 graph TB
-    subgraph "🔄 Core Workflow Engine"
-        A[claude-sub-agent<br/>Upstream Submodule]
+    subgraph "Core Workflow Engine"
+        A[claude-sub-agent Upstream Submodule]
         A1[8 Spec Agents]
         A2[Domain Specialists]
-        A3[/agent-workflow Command]
+        A3[agent-workflow Command]
     end
     
-    subgraph "📋 Project Management Layer"
+    subgraph "Project Management Layer"
         B[Zenhub Integration]
         B1[Epics & Pipelines]
         B2[Issue Templates]
         B3[Roadmap Visualization]
     end
     
-    subgraph "🤝 Team Collaboration Layer"
+    subgraph "Team Collaboration Layer"
         C[GitHub Actions]
         C1[Auto Sync Agents]
         C2[Blueprint Application]
         C3[PR Integration]
     end
     
-    subgraph "🔬 Development Layer"
+    subgraph "Development Layer"
         D[Crystal Parallel Sessions]
         D1[Git Worktrees]
         D2[Diff Comparison]
         D3[Test Execution]
     end
     
-    subgraph "🛡️ Governance Layer"
+    subgraph "Governance Layer"
         E[Documentation Framework]
         E1[AI Usage Policies]
         E2[DPIA Templates]
