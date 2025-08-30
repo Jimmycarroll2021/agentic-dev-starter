@@ -10,6 +10,60 @@ A ready-to-fork repository that combines:
 
 ---
 
+## 🏗️ Architecture Overview
+
+### **System Architecture**
+```mermaid
+graph TD
+    A[Your Project] -->|git submodule| B[claude-sub-agent]
+    A -->|enhanced with| C[Zenhub Integration]
+    A -->|enhanced with| D[Crystal Parallel Dev]
+    A -->|enhanced with| E[GitHub Actions]
+    
+    B --> F[8 Spec Agents]
+    B --> G[Domain Specialists]
+    B --> H[/agent-workflow Command]
+    
+    C --> I[Project Management]
+    C --> J[Issue Templates]
+    C --> K[Epics & Pipelines]
+    
+    D --> L[Parallel Sessions]
+    D --> M[Git Worktrees]
+    D --> N[Diff Comparison]
+    
+    E --> O[Auto Sync]
+    E --> P[Blueprint Apply]
+    
+    F --> F1[spec-orchestrator]
+    F --> F2[spec-analyst]
+    F --> F3[spec-architect]
+    F --> F4[spec-planner]
+    F --> F5[spec-developer]
+    F --> F6[spec-tester]
+    F --> F7[spec-reviewer]
+    F --> F8[spec-validator]
+    
+    G --> G1[senior-backend-architect]
+    G --> G2[senior-frontend-architect]
+    G --> G3[ui-ux-master]
+    G --> G4[refactor-agent]
+```
+
+### **Enhancement Layers**
+```mermaid
+graph LR
+    A[Original claude-sub-agent] --> B[+ Project Management]
+    B --> C[+ Team Collaboration]
+    C --> D[+ Parallel Development]
+    D --> E[+ Governance & Audit]
+    
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#9f9,stroke:#333,stroke-width:2px
+```
+
+---
+
 ## Quick start
 
 **Prerequisites**
@@ -111,6 +165,62 @@ Spin up 2–3 sessions, compare diffs/tests, then squash & rebase the winning pa
 └─ package.json
 ```
 
+## 🔄 Sub-Agent Workflow (Video-Proven Best Practices)
+
+### **Research-Only Pattern (Avoids The Big Mistake)**
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant P as Parent Agent
+    participant S as Sub-Agent
+    participant F as File System
+    
+    U->>P: "/agent-workflow Build web app"
+    P->>F: Create docs/tasks/context.md
+    P->>S: Task: Research components (read context first)
+    S->>F: Read context file
+    S->>S: Research & analyze codebase
+    S->>F: Save research to docs/research.md
+    S->>F: Update context file
+    S->>P: "I've created plan at docs/research.md"
+    P->>F: Read research reports
+    P->>P: Implement with full context
+    P->>U: Working code with debugging capability
+    
+    Note over S: ✅ Research Only - No Direct Implementation
+    Note over P: ✅ Full Context - Can Debug & Fix Issues
+```
+
+### **Original vs Enhanced Workflow**
+```mermaid
+graph TB
+    subgraph "❌ Original claude-sub-agent Only"
+        A1[User Request] --> B1[Agent Workflow]
+        B1 --> C1[Planning Phase]
+        C1 --> D1[Development Phase]
+        D1 --> E1[Validation Phase]
+        E1 --> F1[Code Output]
+    end
+    
+    subgraph "✅ Enhanced Agentic-Dev-Starter"
+        A2[User Request] --> B2[Zenhub Epic Creation]
+        B2 --> C2[Context File Creation]
+        C2 --> D2[Research-Only Sub-Agents]
+        D2 --> E2[File System Reports]
+        E2 --> F2[Parent Implementation]
+        F2 --> G2[Crystal Parallel Testing]
+        G2 --> H2[GitHub Actions CI]
+        H2 --> I2[Production Ready]
+        
+        J2[Issue Templates] --> B2
+        K2[Governance Checks] --> F2
+        L2[Team Collaboration] --> G2
+    end
+    
+    style A1 fill:#fcc,stroke:#f66,stroke-width:2px
+    style I2 fill:#cfc,stroke:#6f6,stroke-width:2px
+```
+
 ## Key workflows
 
 ### Issue Templates
@@ -138,6 +248,72 @@ Spin up 2–3 sessions, compare diffs/tests, then squash & rebase the winning pa
 - **docs/practices/** - Field-tested sub-agent practices
 - **docs/governance/** - AI usage policies and DPIA templates
 
+## 🎯 Expert Sub-Agent Network
+
+### **Service-Specific Research Agents**
+```mermaid
+graph TB
+    subgraph "Expert Sub-Agents (Research Only)"
+        A[Vercel AI SDK Expert]
+        B[ShadCN/UI Expert] 
+        C[Stripe Expert]
+        D[Supabase Expert]
+        E[Custom Service Expert]
+    end
+    
+    subgraph "MCP Tools"
+        F[Component Retrieval]
+        G[Documentation Access]
+        H[Example Code]
+        I[Best Practices]
+    end
+    
+    subgraph "Research Outputs"
+        J[Implementation Plans]
+        K[Architecture Designs]
+        L[Integration Guides]
+        M[Component Lists]
+    end
+    
+    A --> F
+    B --> G
+    C --> H
+    D --> I
+    E --> F
+    
+    F --> J
+    G --> K
+    H --> L
+    I --> M
+    
+    J --> N[Parent Agent Implementation]
+    K --> N
+    L --> N
+    M --> N
+    
+    style N fill:#9f9,stroke:#333,stroke-width:3px
+```
+
+### **File System Context Management**
+```mermaid
+graph LR
+    subgraph "Context Flow"
+        A[docs/tasks/context.md] -->|read| B[Sub-Agent]
+        B -->|research| C[Codebase Analysis]
+        C -->|save| D[docs/research.md]
+        D -->|update| A
+        A -->|read all| E[Parent Agent]
+        E -->|implement| F[Working Code]
+    end
+    
+    subgraph "Token Optimization"
+        G[Massive File Reading<br/>10,000+ tokens] -->|becomes| H[Small Summary<br/>200-500 tokens]
+    end
+    
+    style H fill:#9f9,stroke:#333,stroke-width:2px
+    style G fill:#fcc,stroke:#f66,stroke-width:2px
+```
+
 ## Example usage
 
 1. **Create an Epic** in Zenhub from the seeded issues
@@ -149,6 +325,67 @@ Spin up 2–3 sessions, compare diffs/tests, then squash & rebase the winning pa
 3. **Review artefacts** (requirements.md, architecture.md, tasks.md, test-plan.md)
 4. **Move through phases**: Planning → Development → Validation
 5. **Commit artefacts** to `docs/YYYY-MM-DD/<issue-number>/` for audit trail
+
+## 📈 Enhancement Value Proposition
+
+### **What We Added Beyond Original**
+```mermaid
+pie title Enhancement Value Distribution
+    "Original claude-sub-agent" : 100
+    "Project Management (Zenhub)" : 60
+    "Team Collaboration" : 40  
+    "Parallel Development (Crystal)" : 50
+    "Governance & Audit" : 30
+    "Automation (GitHub Actions)" : 25
+    "Video Best Practices" : 39
+```
+
+### **Integration Ecosystem**
+```mermaid
+graph TB
+    subgraph "🔄 Core Workflow Engine"
+        A[claude-sub-agent<br/>Upstream Submodule]
+        A1[8 Spec Agents]
+        A2[Domain Specialists]
+        A3[/agent-workflow Command]
+    end
+    
+    subgraph "📋 Project Management Layer"
+        B[Zenhub Integration]
+        B1[Epics & Pipelines]
+        B2[Issue Templates]
+        B3[Roadmap Visualization]
+    end
+    
+    subgraph "🤝 Team Collaboration Layer"
+        C[GitHub Actions]
+        C1[Auto Sync Agents]
+        C2[Blueprint Application]
+        C3[PR Integration]
+    end
+    
+    subgraph "🔬 Development Layer"
+        D[Crystal Parallel Sessions]
+        D1[Git Worktrees]
+        D2[Diff Comparison]
+        D3[Test Execution]
+    end
+    
+    subgraph "🛡️ Governance Layer"
+        E[Documentation Framework]
+        E1[AI Usage Policies]
+        E2[DPIA Templates]
+        E3[Audit Trails]
+    end
+    
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    
+    style A fill:#f9f,stroke:#333,stroke-width:3px
+    style E fill:#9f9,stroke:#333,stroke-width:3px
+```
 
 ## Crystal integration (optional)
 
